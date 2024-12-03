@@ -31,7 +31,7 @@ fun RegistroEventosScreen(onEventoGuardado: () -> Unit, onCancelar: () -> Unit) 
             androidx.compose.material3.SmallTopAppBar(
                 title = { Text("Registro de Eventos") },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary, // Color de fondo
+                    containerColor = androidx.compose.ui.graphics.Color(0xFF1976D2), // Azul (#1976D2)
                     titleContentColor = MaterialTheme.colorScheme.onPrimary // Color del texto
                 )
             )

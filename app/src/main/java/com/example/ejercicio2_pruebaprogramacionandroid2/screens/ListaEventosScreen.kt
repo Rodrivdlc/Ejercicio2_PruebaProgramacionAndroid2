@@ -11,7 +11,9 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SmallTopAppBar
@@ -47,18 +49,22 @@ fun ListaEventosScreen(navigateToRegistro: () -> Unit) {
 
     Scaffold(
         topBar = {
-            SmallTopAppBar(
+            androidx.compose.material3.SmallTopAppBar(
                 title = { Text("Eventos") },
+                actions = {
+                    IconButton(onClick = navigateToRegistro) {
+                        androidx.compose.material3.Icon(
+                            imageVector = androidx.compose.material.icons.Icons.Default.Add,
+                            contentDescription = "Añadir Evento",
+                            tint = androidx.compose.ui.graphics.Color.White // Ícono blanco
+                        )
+                    }
+                },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                    containerColor = androidx.compose.ui.graphics.Color(0xFF1976D2), // Azul (#1976D2)
+                    titleContentColor = androidx.compose.ui.graphics.Color.White // Texto blanco
                 )
             )
-        },
-        floatingActionButton = {
-            FloatingActionButton(onClick = navigateToRegistro) {
-                Text("+") // Botón para agregar eventos
-            }
         }
     ) { paddingValues ->
         LazyColumn(
