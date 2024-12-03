@@ -11,37 +11,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.ejercicio2_pruebaprogramacionandroid2.navigation.AppNavigation
 import com.example.ejercicio2_pruebaprogramacionandroid2.ui.theme.Ejercicio2_PruebaProgramacionAndroid2Theme
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        // Inicializar Firebase
+        FirebaseApp.initializeApp(this)
+
+        // Configurar Jetpack Compose
         setContent {
-            Ejercicio2_PruebaProgramacionAndroid2Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            AppNavigation() // Configurar navegación directamente
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Ejercicio2_PruebaProgramacionAndroid2Theme {
-        Greeting("Android")
     }
 }
