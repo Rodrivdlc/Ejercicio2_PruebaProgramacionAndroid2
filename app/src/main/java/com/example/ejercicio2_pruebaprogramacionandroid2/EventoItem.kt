@@ -19,31 +19,31 @@ fun EventoItem(evento: Evento) {
             .padding(vertical = 8.dp),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
-        Row(
-            modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
         ) {
-            // Reemplazo del ícono: Un cuadro de color como marcador
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .padding(8.dp)
-                    .background(MaterialTheme.colorScheme.primary)
+            // Nombre del evento
+            Text(
+                text = evento.nombre,
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.padding(bottom = 4.dp)
             )
 
-            Spacer(modifier = Modifier.width(16.dp))
+            // Descripción del evento
+            Text(
+                text = evento.descripcion,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
 
-            // Detalles del evento
-            Column {
-                Text(
-                    text = evento.nombre,
-                    style = MaterialTheme.typography.bodyLarge
-                )
-                Text(
-                    text = evento.descripcion,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-            }
+            // Precio del evento
+            Text(
+                text = "Precio: ${evento.precio}",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.secondary
+            )
         }
     }
 }

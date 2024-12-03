@@ -11,10 +11,16 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SmallTopAppBar
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import com.example.ejercicio2_pruebaprogramacionandroid2.EventoItem
 import com.example.ejercicio2_pruebaprogramacionandroid2.data.Evento
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListaEventosScreen(navigateToRegistro: () -> Unit) {
     val database = FirebaseDatabase.getInstance().reference.child("eventos")
@@ -40,14 +46,25 @@ fun ListaEventosScreen(navigateToRegistro: () -> Unit) {
     }
 
     Scaffold(
+        topBar = {
+            SmallTopAppBar(
+                title = { Text("Eventos") },
+                colors = TopAppBarDefaults.smallTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            )
+        },
         floatingActionButton = {
             FloatingActionButton(onClick = navigateToRegistro) {
                 Text("+") // Botón para agregar eventos
             }
         }
-    ) {
+    ) { paddingValues ->
         LazyColumn(
-            modifier = Modifier.padding(it).padding(16.dp)
+            modifier = Modifier
+                .padding(paddingValues)
+                .padding(16.dp)
         ) {
             items(eventos) { evento ->
                 EventoItem(evento)
@@ -55,3 +72,4 @@ fun ListaEventosScreen(navigateToRegistro: () -> Unit) {
         }
     }
 }
+
