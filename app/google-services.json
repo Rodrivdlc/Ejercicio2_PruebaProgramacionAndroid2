@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "523268664301",
+    "project_id": "segundoejerciciopruebaandroid2",
+    "storage_bucket": "segundoejerciciopruebaandroid2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523268664301:android:2b186e22602304f30595e4",
+        "android_client_info": {
+          "package_name": "com.example.ejercicio2_pruebaprogramacionandroid2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBm0ZKSDCw9aCbfTl6Nn8AzQplt8B7BGo0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
