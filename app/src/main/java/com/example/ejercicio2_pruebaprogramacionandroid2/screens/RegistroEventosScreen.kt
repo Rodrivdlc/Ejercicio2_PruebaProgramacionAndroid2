@@ -15,6 +15,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.ui.res.stringResource
+import com.example.ejercicio2_pruebaprogramacionandroid2.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,10 +31,10 @@ fun RegistroEventosScreen(onEventoGuardado: () -> Unit, onCancelar: () -> Unit) 
     Scaffold(
         topBar = {
             androidx.compose.material3.SmallTopAppBar(
-                title = { Text("Registro de Eventos") },
+                title = { Text(stringResource(id = R.string.registro_eventos)) },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = androidx.compose.ui.graphics.Color(0xFF1976D2), // Azul (#1976D2)
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary // Color del texto
+                    containerColor = androidx.compose.ui.graphics.Color(0xFF1976D2),
+                    titleContentColor = androidx.compose.ui.graphics.Color.White
                 )
             )
         }
@@ -45,72 +47,65 @@ fun RegistroEventosScreen(onEventoGuardado: () -> Unit, onCancelar: () -> Unit) 
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Campos de entrada
             OutlinedTextField(
                 value = nombre.value,
                 onValueChange = { nombre.value = it },
-                label = { Text("Nombre del Evento") },
+                label = { Text(stringResource(id = R.string.nombre_evento)) },
                 modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
             )
             OutlinedTextField(
                 value = descripcion.value,
                 onValueChange = { descripcion.value = it },
-                label = { Text("Descripción") },
+                label = { Text(stringResource(id = R.string.descripcion)) },
                 modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
             )
             OutlinedTextField(
                 value = direccion.value,
                 onValueChange = { direccion.value = it },
-                label = { Text("Dirección") },
+                label = { Text(stringResource(id = R.string.direccion)) },
                 modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
             )
             OutlinedTextField(
                 value = precio.value,
                 onValueChange = { precio.value = it },
-                label = { Text("Precio") },
+                label = { Text(stringResource(id = R.string.precio)) },
                 modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
             )
             OutlinedTextField(
                 value = fecha.value,
                 onValueChange = { fecha.value = it },
-                label = { Text("Fecha (ej. 2023-12-01)") },
+                label = { Text(stringResource(id = R.string.fecha)) },
                 modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
             )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Botones
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                Button(
-                    onClick = {
-                        if (nombre.value.isNotBlank() && descripcion.value.isNotBlank()) {
-                            val nuevoEvento = mapOf(
-                                "nombre" to nombre.value,
-                                "descripcion" to descripcion.value,
-                                "direccion" to direccion.value,
-                                "precio" to precio.value,
-                                "fecha" to fecha.value
-                            )
-                            database.push().setValue(nuevoEvento)
-                                .addOnSuccessListener {
-                                    Log.d("RegistroEventosScreen", "Evento guardado correctamente")
-                                    onEventoGuardado()
-                                }
-                                .addOnFailureListener {
-                                    Log.e("RegistroEventosScreen", "Error al guardar evento: ${it.message}")
-                                }
-                        } else {
-                            Log.e("RegistroEventosScreen", "Por favor, rellena todos los campos obligatorios")
-                        }
+                Button(onClick = {
+                    if (nombre.value.isNotBlank() && descripcion.value.isNotBlank()) {
+                        val nuevoEvento = mapOf(
+                            "nombre" to nombre.value,
+                            "descripcion" to descripcion.value,
+                            "direccion" to direccion.value,
+                            "precio" to precio.value,
+                            "fecha" to fecha.value
+                        )
+                        database.push().setValue(nuevoEvento)
+                            .addOnSuccessListener {
+                                Log.d("RegistroEventosScreen", "Evento guardado correctamente")
+                                onEventoGuardado()
+                            }
+                            .addOnFailureListener {
+                                Log.e("RegistroEventosScreen", "Error al guardar evento: ${it.message}")
+                            }
+                    } else {
+                        Log.e("RegistroEventosScreen", "Por favor, rellena todos los campos obligatorios")
                     }
-                ) {
-                    Text("Guardar")
+                }) {
+                    Text(stringResource(id = R.string.guardar))
                 }
                 Button(onClick = onCancelar) {
-                    Text("Cancelar")
+                    Text(stringResource(id = R.string.cancelar))
                 }
             }
         }

@@ -19,7 +19,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.ui.res.stringResource
 import com.example.ejercicio2_pruebaprogramacionandroid2.EventoItem
+import com.example.ejercicio2_pruebaprogramacionandroid2.R
 import com.example.ejercicio2_pruebaprogramacionandroid2.data.Evento
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -28,7 +30,6 @@ fun ListaEventosScreen(navigateToRegistro: () -> Unit) {
     val database = FirebaseDatabase.getInstance().reference.child("eventos")
     val eventos = remember { mutableStateListOf<Evento>() }
 
-    // Leer eventos desde Firebase
     LaunchedEffect(Unit) {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -50,19 +51,19 @@ fun ListaEventosScreen(navigateToRegistro: () -> Unit) {
     Scaffold(
         topBar = {
             androidx.compose.material3.SmallTopAppBar(
-                title = { Text("Eventos") },
+                title = { Text(stringResource(id = R.string.eventos)) },
                 actions = {
                     IconButton(onClick = navigateToRegistro) {
                         androidx.compose.material3.Icon(
                             imageVector = androidx.compose.material.icons.Icons.Default.Add,
-                            contentDescription = "Añadir Evento",
-                            tint = androidx.compose.ui.graphics.Color.White // Ícono blanco
+                            contentDescription = stringResource(id = R.string.registro_eventos),
+                            tint = androidx.compose.ui.graphics.Color.White
                         )
                     }
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = androidx.compose.ui.graphics.Color(0xFF1976D2), // Azul (#1976D2)
-                    titleContentColor = androidx.compose.ui.graphics.Color.White // Texto blanco
+                    containerColor = androidx.compose.ui.graphics.Color(0xFF1976D2),
+                    titleContentColor = androidx.compose.ui.graphics.Color.White
                 )
             )
         }

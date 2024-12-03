@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Ejercicio2_PruebaProgramacionAndroid2</string>
+    <string name="eventos">Events</string>
+    <string name="registro_eventos">Event Registration</string>
+    <string name="nombre_evento">Event Name</string>
+    <string name="descripcion">Description</string>
+    <string name="direccion">Address</string>
+    <string name="precio">Price</string>
+    <string name="fecha">Date</string>
+    <string name="guardar">Save</string>
+    <string name="cancelar">Cancel</string>
+</resources>
